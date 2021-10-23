@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 
 // app.use(requestLogger);
-// app.use('/',router);
+app.use('/',router);
 // app.use(errorLogger);
 
 app.use('/setupDb',(req,res,next)=>{
