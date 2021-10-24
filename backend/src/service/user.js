@@ -16,6 +16,7 @@ user.getAllEmployees = async()=>{
 user.getAllDepartments = async()=>{
     let deptData = await model.getAllDepartments();
     if(deptData){
+        // console.log(deptData);
         return deptData
     }else{
         let err = new Error("No Departments found")

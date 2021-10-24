@@ -4,7 +4,7 @@ Mongoose.Promise = global.Promise;
 // Mongoose.set('useCreateIndex',true);
 const url = "mongodb://localhost:27017/departmentView";
 
-const Employee = Schema({
+const employeeSchema = Schema({
     empId:{type:String,required:true,unique:true},
     empName:{type:String,required:true},
     empDept:{type:String,required:true},
@@ -12,7 +12,7 @@ const Employee = Schema({
     empAdd:{type:String,required:true}
 },{collection:"Employee"})
 
-const Department = Schema({
+const departmentSchema = Schema({
     deptId:{type:String,required:true,unique:true},
     deptName:{type:String,required:true,unique:true},
     deptRoles:{type:String,required:true},
@@ -24,7 +24,7 @@ let collection = {};
 collection.getEmployeeSchema = async()=>{
     try{
         let empDbConnection = await Mongoose.connect(url,{useUnifiedTopology:true,useNewUrlParser:true});
-        let model = await empDbConnection.model('Employee',Employee);
+        let model = await empDbConnection.model('Employee',employeeSchema);
         return model;
     }catch(err){
         // let empError = new Error("Cannot create Employee DataBase.");
@@ -36,7 +36,7 @@ collection.getEmployeeSchema = async()=>{
 collection.getDepartmentSchema = async() =>{
     try{
         let depConnection = await Mongoose.connect(url,{useUnifiedTopology:true,UseNewUrlParser:true});
-        let model = await depConnection.model('Department',Department);
+        let model = await depConnection.model('Department',departmentSchema);
         return model;
     }catch(err){
         // let err = new Error("Cannot create Department DataBase");

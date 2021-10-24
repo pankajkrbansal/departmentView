@@ -11,8 +11,10 @@ const generateId = async()=>{
 let model = {}
 
 model.getAllEmployees = async()=>{
-    let empData = await connection.getEmployeeSchema();
+    let empModel = await connection.getEmployeeSchema();
+    let empData = await empModel.find({},{_id:0});
     if(empData.length > 0){
+        // console.log(empData);
         return empData
     }else{
         return null;
@@ -20,8 +22,10 @@ model.getAllEmployees = async()=>{
 }
 
 model.getAllDepartments = async()=>{
-    let deptData = await connection.getDepartmentSchema();
+    let model = await connection.getDepartmentSchema();
+    let deptData = await model.find({},{_id:0})
     if(deptData.length > 0){
+        // console.log(deptData);
         return deptData
     }else{
         return null;

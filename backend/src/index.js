@@ -7,7 +7,7 @@ const errorLogger = require('./utilities/errorLogger')
 const app = express();
 
 app.use(cors());
-
+app.use(express.json())
 app.use(requestLogger);
 app.use('/',router);
 app.use(errorLogger);
