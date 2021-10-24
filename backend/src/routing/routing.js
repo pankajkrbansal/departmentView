@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router;
+const router = express.Router();
 const service = require('../service/user')
 
 router.get('/departments',(req,res,next)=>{
