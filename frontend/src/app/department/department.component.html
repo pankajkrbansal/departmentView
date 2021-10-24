@@ -1,0 +1,25 @@
+<!-- <p>department works!</p> -->
+
+
+
+<div class="container" style="align-items: center;">
+    <h3 class="text-center header"> Department </h3>
+</div>
+
+<table mat-table [dataSource]="dataSource"  matSort   class="mat-elevation-z8 table">
+    <ng-container matColumnDef="deptId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Id </th> 
+        <td mat-cell *matCellDef="let user"> {{user.deptId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="deptName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name </th>
+        <td mat-cell *matCellDef="let user"> {{user.deptName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="deptRoles">
+        <th mat-header-cell *matHeaderCellDef> Roles </th>
+        <td mat-cell *matCellDef="let user"> {{user.deptRoles}} </td>
+    </ng-container>
+      
+    <tr mat-header-row *matHeaderRowDef="displayedCol"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedCol;"></tr>
+</table>
