@@ -1,1 +1,33 @@
-<p>user-auth works!</p>
+<div class="container">
+    <div class="row">
+        <div class="card col-md-6">
+            <h2 class="text-center">Register Here</h2>
+            <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+                
+              <div class="usrName form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" formControlName="usrName">
+                <div class="nameError" *ngIf="(registerForm.controls.usrName.invalid && registerForm.controls.usrName.dirty) || registerForm.controls.usrName.touched">
+                    <span class="text text-danger" *ngIf="registerForm.controls.usrName.errors?.required">Field is required</span>
+                </div>
+              </div>
+              <div class="usrEmail form-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" class="form-control" formControlName="usrEmail">
+                <div class="nameError" *ngIf="(registerForm.controls.usrEmail.invalid && registerForm.controls.usrEmail.dirty) || registerForm.controls.usrEmail.touched">
+                    <span class="text text-danger" *ngIf="registerForm.controls.usrEmail.errors?.required">Field is required</span>
+                </div>
+              </div>
+              <div class="usrPwd form-group">
+                <label for="pwd">Password</label>
+                <input type="password" id="pwd" class="form-control" formControlName="usrPwd">
+                <div class="nameError" *ngIf="(registerForm.controls.usrPwd.invalid && registerForm.controls.usrPwd.dirty) || registerForm.controls.usrPwd.touched">
+                    <span class="text text-danger" *ngIf="registerForm.controls.usrPwd.errors?.required">Field is required</span>
+                </div>
+              </div>  
+              <button class="btn btn-primary" style="width: 100%;">Register</button>
+              <span class="text text-danger text-center">{{errorMsg}}</span>
+            </form>
+        </div>
+    </div>
+</div>

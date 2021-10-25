@@ -1,0 +1,12 @@
+.card{
+    width: 400px;
+    margin-top: 155px;
+    margin-left: 400px;
+    padding: 10px;
+    border: 2px solid gray;
+    box-shadow: 2px 2px 2px gray;
+}
+
+input{
+    margin-bottom: 10px;
+}

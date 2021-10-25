@@ -5,6 +5,7 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatSortModule} from '@angular/material/sort';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
@@ -14,20 +15,24 @@ import {MatSortModule} from '@angular/material/sort';
 
 export class DepartmentComponent implements OnInit {
 
-  constructor(private service:ViewServiceService,private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private router:Router,private service:ViewServiceService,private _liveAnnouncer: LiveAnnouncer) { }
   @ViewChild(MatSort) sort: MatSort;
   
 errorMsg:String = null;
 dataSource;
   ngOnInit(): void {
-    this.service.getAlldepartments().subscribe((result)=>{
-      this.dataSource = result;
-      this.dataSource = new MatTableDataSource(this.dataSource);
-    this.dataSource.sort = this.sort;
-      console.log(this.dataSource);
-    },(error)=>{
-      this.errorMsg = error.error.message;
-    });
+    if(!localStorage.getItem('email')){
+      this.router.navigateByUrl('')
+    }else{
+      this.service.getAlldepartments().subscribe((result)=>{
+        this.dataSource = result;
+        this.dataSource = new MatTableDataSource(this.dataSource);
+      this.dataSource.sort = this.sort;
+        console.log(this.dataSource);
+      },(error)=>{
+        this.errorMsg = error.error.message;
+      });
+    }
   }
   displayedCol : String[] = ['deptId','deptName','deptRoles'];
       

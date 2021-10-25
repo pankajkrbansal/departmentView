@@ -32,4 +32,21 @@ model.getAllDepartments = async()=>{
     }
 }
 
+model.didRegister = async(usrObj)=>{
+    let usrSchema =await connection.getUserSchema();
+    let findUsr = await usrSchema.findOne({usrEmail:usrObj.usrEmail})
+    if(findUsr){
+        let err = new Error("User already exists");
+        err.status = 400;
+        throw err;
+    }
+    let didReg =await usrSchema.insertMany(usrObj)
+    if(didReg){
+        console.log(didReg);
+        return didReg;
+    }else{
+        return null;
+    }
+}
+
 module.exports = model;

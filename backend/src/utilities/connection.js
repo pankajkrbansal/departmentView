@@ -9,7 +9,8 @@ const employeeSchema = Schema({
     empName:{type:String,required:true},
     empDept:{type:String,required:true},
     empEmail:{type:String,required:true,unique:true},
-    empAdd:{type:String,required:true}
+    empAdd:{type:String,required:true},
+    pwd:{type:String,required:true}
 },{collection:"Employee"})
 
 const departmentSchema = Schema({
@@ -17,6 +18,12 @@ const departmentSchema = Schema({
     deptName:{type:String,required:true,unique:true},
     deptRoles:{type:String,required:true},
 },{collection:"Department"})
+
+const userSchema = Schema({
+    usrName:{type:String,required:true},
+    usrEmail:{type:String,required:true,unique:true},
+    usrPwd:{type:String,required:true},
+},{collection:"User"})
 
 
 let collection = {};
@@ -44,5 +51,16 @@ collection.getDepartmentSchema = async() =>{
         throw err;
     }
 }
+
+collection.getUserSchema = async()=>{
+    try{
+        let usrConn = await Mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true});
+        let usrModel = await usrConn.model('User',userSchema);
+        return usrModel;
+    }catch(err){
+        next(err)
+    }
+}
+
 
 module.exports = collection;

@@ -25,5 +25,15 @@ user.getAllDepartments = async()=>{
     }
 }
 
+user.didRegister = async(userData)=>{
+    let usrRegister = await model.didRegister(userData);
+    if(usrRegister){
+        return usrRegister
+    }else{
+        let err = new Error("Failed to register user");
+        err.status = 500;
+        throw err;
+    }
+}
 
 module.exports = user;

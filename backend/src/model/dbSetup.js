@@ -7,6 +7,7 @@ const EmployeeData = [
         empName:"Ramen",
         empDept:"IVTS",
         empEmail:"ramen.ivts@gmail.com",
+        pwd:"password01",
         empAdd:"India"
     },
     {
@@ -14,6 +15,7 @@ const EmployeeData = [
         empName:"Takashi",
         empDept:"IVTC",
         empEmail:"takashi.ivtc@gmail.com",
+        pwd:"password01",
         empAdd:"India"
 
     },
@@ -22,6 +24,7 @@ const EmployeeData = [
         empName:"Riyoko",
         empDept:"CCD",
         empEmail:"riyoko.ccd@gmail.com",
+        pwd:"password01",
         empAdd:"India"
 
     },
@@ -30,6 +33,7 @@ const EmployeeData = [
         empName:"Kal",
         empDept:"CMP",
         empEmail:"kal01.cmp@gmail.com",
+        pwd:"password01",
         empAdd:"India"
 
     }
@@ -58,6 +62,17 @@ const DepartmentDb = [
     }
 ];
 
+
+const userData = [
+    {
+        usrName:"admin",
+        usrPwd:"admin",
+        usrEmail:"admin@gmail.com"
+    }
+];
+
+
+
 exports.setupDb = async()=>{
     let Emp = await connection.getEmployeeSchema();
     await Emp.deleteMany();
@@ -67,7 +82,12 @@ exports.setupDb = async()=>{
     await Dept.deleteMany();
     let deptData = await Dept.insertMany(DepartmentDb);
     
-    if(empData && deptData)
+    let usr = await connection.getUserSchema();
+    await usr.deleteMany();
+    let usrSet = usr.insertMany(userData);
+
+
+    if(empData && deptData && usrSet)
     {
         return "Insertion successfull"
     }else{
