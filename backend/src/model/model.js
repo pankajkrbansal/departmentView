@@ -49,4 +49,16 @@ model.didRegister = async(usrObj)=>{
     }
 }
 
+model.loginHandle = async(loginData)=>{
+    let userSchema = await connection.getUserSchema();
+    let emailFound = await userSchema.findOne({usrEmail:loginData.usrEmail});
+    if(emailFound){
+        return emailFound
+    }else{
+        let err = new Error("Register before login");
+        err.status  = 400;
+        throw err;
+    }
+}
+
 module.exports = model;

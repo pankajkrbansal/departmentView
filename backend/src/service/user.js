@@ -36,4 +36,15 @@ user.didRegister = async(userData)=>{
     }
 }
 
+user.loginHandle = async(loginData)=>{
+    let modelResponse = await model.loginHandle(loginData);
+    if(modelResponse){
+        return modelResponse
+    }else{
+        let err = new Error("Failed to login");
+        err.status = 500;
+        throw err;
+    }
+}
+
 module.exports = user;

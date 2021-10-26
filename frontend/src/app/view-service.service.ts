@@ -18,4 +18,7 @@ export class ViewServiceService {
   registerUser(data):Observable<any>{
     return this.http.post('http://localhost:1050/register',data)
   }
+  loginUser(data):Observable<any>{
+    return this.http.post('http://localhost:1050/login',data);
+  }
 }

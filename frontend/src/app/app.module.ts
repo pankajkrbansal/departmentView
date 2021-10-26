@@ -11,11 +11,13 @@ import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSortModule} from '@angular/material/sort';
 import { UserAuthComponent } from './user-auth/user-auth.component';
+import { DepartmentDetailsComponent } from './department-details/department-details.component';
 @NgModule({
   declarations: [
     AppComponent,
     DepartmentComponent,
-    UserAuthComponent
+    UserAuthComponent,
+    DepartmentDetailsComponent
   ],
   imports: [
     BrowserModule,
